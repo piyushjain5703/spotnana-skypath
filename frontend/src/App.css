@@ -1,0 +1,575 @@
+/* ================================================================== */
+/*  APP LAYOUT                                                         */
+/* ================================================================== */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Header                                                             */
+/* ------------------------------------------------------------------ */
+
+.app__header {
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  color: #fff;
+  padding: 2rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.app__header-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.app__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app__logo svg {
+  flex-shrink: 0;
+}
+
+.app__tagline {
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Main                                                               */
+/* ------------------------------------------------------------------ */
+
+.app__main {
+  flex: 1;
+  max-width: 860px;
+  width: 100%;
+  margin: -1.5rem auto 2rem;
+  padding: 0 1rem;
+}
+
+.app__results {
+  margin-top: 1.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Footer                                                             */
+/* ------------------------------------------------------------------ */
+
+.app__footer {
+  text-align: center;
+  padding: 1.25rem;
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.app__footer-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.app__footer-link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* ================================================================== */
+/*  SEARCH FORM                                                        */
+/* ================================================================== */
+
+.search-form {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.search-form__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.search-form__field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 120px;
+}
+
+.search-form__field label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.search-form__field input {
+  padding: 0.625rem 0.75rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.search-form__field input:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.search-form__field input::placeholder {
+  color: #94a3b8;
+}
+
+.search-form__error {
+  font-size: 0.75rem;
+  color: var(--color-error);
+  margin-top: 0.25rem;
+  min-height: 1rem;
+}
+
+.search-form__swap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.search-form__swap:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  color: #fff;
+}
+
+.search-form__submit {
+  margin-top: 1.5rem;
+  padding: 0.625rem 1.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.search-form__submit:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+.search-form__submit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.search-form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================================================================== */
+/*  RESULTS LIST                                                       */
+/* ================================================================== */
+
+.results-list__count {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.results-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ================================================================== */
+/*  ITINERARY CARD                                                     */
+/* ================================================================== */
+
+.itinerary-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 1.25rem 1.5rem;
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+
+.itinerary-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+.itinerary-card__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.itinerary-card__duration {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.itinerary-card__price {
+  margin-left: auto;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge--direct {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge--one-stop {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge--two-stop {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ================================================================== */
+/*  SEGMENT                                                            */
+/* ================================================================== */
+
+.segment {
+  padding: 0.5rem 0;
+}
+
+.segment__airline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.segment__airline-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.segment__flight-number {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.segment__aircraft {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-left: auto;
+}
+
+.segment__times {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.segment__departure,
+.segment__arrival {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+}
+
+.segment__time {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.segment__airport {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.segment__city {
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+}
+
+.segment__arrow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 80px;
+}
+
+.segment__duration {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.segment__arrow-line {
+  width: 100%;
+  height: 2px;
+  background: var(--color-border);
+  position: relative;
+}
+
+.segment__arrow-line::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid var(--color-text-secondary);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+/* ================================================================== */
+/*  LAYOVER                                                            */
+/* ================================================================== */
+
+.layover {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  margin: 0.25rem 0;
+  background: #fffbeb;
+  border-left: 3px solid var(--color-warning);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.layover__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-warning);
+  flex-shrink: 0;
+}
+
+.layover__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.layover__duration {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #92400e;
+}
+
+.layover__airport {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* ================================================================== */
+/*  LOADING SPINNER                                                    */
+/* ================================================================== */
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 0;
+  color: var(--color-primary);
+}
+
+.loading-spinner__plane {
+  animation: bounce 1.2s ease-in-out infinite;
+}
+
+.loading-spinner__text {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* ================================================================== */
+/*  EMPTY STATE                                                        */
+/* ================================================================== */
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-text-secondary);
+}
+
+.empty-state svg {
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  font-size: 0.9rem;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ================================================================== */
+/*  ERROR BANNER                                                       */
+/* ================================================================== */
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--color-error-bg);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
+  color: #991b1b;
+}
+
+.error-banner svg {
+  flex-shrink: 0;
+}
+
+.error-banner__message {
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.error-banner__dismiss {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #991b1b;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.error-banner__dismiss:hover {
+  opacity: 1;
+}
+
+/* ================================================================== */
+/*  RESPONSIVE                                                         */
+/* ================================================================== */
+
+@media (max-width: 640px) {
+  .app__header {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .app__logo {
+    font-size: 1.35rem;
+  }
+
+  .search-form {
+    padding: 1rem;
+  }
+
+  .search-form__row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-form__field {
+    min-width: 100%;
+  }
+
+  .search-form__swap {
+    align-self: center;
+    margin-top: 0;
+    transform: rotate(90deg);
+  }
+
+  .search-form__submit {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .itinerary-card {
+    padding: 1rem;
+  }
+
+  .itinerary-card__header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .segment__times {
+    gap: 0.5rem;
+  }
+
+  .segment__time {
+    font-size: 0.95rem;
+  }
+}
