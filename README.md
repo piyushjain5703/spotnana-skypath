@@ -98,11 +98,14 @@ spotnana-skypath/
 │   │   ├── App.tsx                           # Root component
 │   │   ├── App.css                           # Component styles
 │   │   └── index.css                         # Global styles
+│   ├── public/_redirects                     # Netlify SPA routing fallback
+│   ├── .env.example                          # Environment variable docs
 │   ├── Dockerfile                            # Multi-stage Node/Nginx build
 │   ├── nginx.conf                            # Reverse proxy + SPA config
 │   ├── vite.config.ts
 │   └── package.json
 ├── docker-compose.yml                # Two-service orchestration
+├── netlify.toml                      # Netlify build & deploy config
 ├── flights.json                      # Source data file
 ├── PLAN.md                           # Implementation plan
 └── README.md                         # This file
@@ -315,6 +318,56 @@ Full integration tests using Spring MockMvc covering all 6 assignment test cases
 - **API versioning**: Prefix endpoints with `/v1/` for backward-compatible evolution
 - **Rate limiting**: Add request throttling to prevent abuse of the search endpoint
 - **OpenAPI/Swagger**: Auto-generate API documentation from annotations
+
+---
+
+## Deploying the Frontend on Netlify
+
+The frontend is configured for one-click deployment on [Netlify](https://www.netlify.com/).
+
+### Prerequisites
+
+- The backend API must be deployed and accessible at a public URL (e.g., `https://skypath-api.example.com`). The backend already includes CORS headers allowing requests from any origin.
+
+### Setup Steps
+
+1. **Connect your repository** — Log in to Netlify, click *"Add new site" > "Import an existing project"*, and select this Git repository.
+
+2. **Verify build settings** — Netlify auto-detects settings from `netlify.toml`. Confirm:
+   | Setting | Value |
+   |---------|-------|
+   | Base directory | `frontend/` |
+   | Build command | `npm ci && npm run build` |
+   | Publish directory | `frontend/dist` |
+
+3. **Set the backend URL environment variable** — Go to *Site settings > Environment variables* and add:
+   | Key | Value |
+   |-----|-------|
+   | `VITE_API_URL` | Your deployed backend URL (e.g., `https://skypath-api.example.com`) |
+
+   > **Note:** `VITE_` prefixed variables are embedded at build time by Vite. After changing this value, trigger a re-deploy for it to take effect.
+
+4. **Deploy** — Click *"Deploy site"*. Netlify will install dependencies, build the project, and publish the `dist/` folder.
+
+### What's Configured
+
+| Feature | How |
+|---------|-----|
+| SPA routing | `netlify.toml` redirect rule serves `index.html` for all routes |
+| Asset caching | Vite-hashed `/assets/*` files get `Cache-Control: immutable, 1 year` |
+| Security headers | `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` |
+| Node version | Pinned to Node 20 via `netlify.toml` |
+
+### Local Testing (Netlify CLI)
+
+You can preview the Netlify build locally:
+
+```bash
+npm install -g netlify-cli
+cd frontend
+netlify build         # runs the production build
+netlify dev           # serves the build with redirects applied
+```
 
 ---
 

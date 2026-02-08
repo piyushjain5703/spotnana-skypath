@@ -1,0 +1,3 @@
+# SPA fallback — Netlify serves index.html for all routes that
+# don't match a static file, so client-side routing works correctly.
+/*    /index.html   200
