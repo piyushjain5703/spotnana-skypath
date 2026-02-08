@@ -8,7 +8,7 @@ A full-stack flight connection search engine that finds valid itineraries (direc
 
 | Service  | Platform | URL |
 |----------|----------|-----|
-| Frontend | Netlify  | [**`<your-netlify-url>`**](https://app.netlify.com) <!-- Replace with your Netlify URL, e.g. https://skypath.netlify.app --> |
+| Frontend | Netlify  | [**`https://spotnana-skypath.netlify.app/`**](https://spotnana-skypath.netlify.app/) 
 | Backend  | Render   | [**https://spotnana-skypath.onrender.com**](https://spotnana-skypath.onrender.com) |
 
 > **Note:** The Render free tier spins down after inactivity. The first request may take ~30–60 seconds while the backend cold-starts.
